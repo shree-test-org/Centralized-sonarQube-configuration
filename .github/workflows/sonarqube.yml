@@ -17,7 +17,5 @@ jobs:
           fetch-depth: 0
       - name: Run SonarQube scan
         uses: SonarSource/sonarqube-scan-action@v5
-        with:
-          projectKey: ${{ inputs.project-key }}
         env:
-          SONARCLOUD_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
