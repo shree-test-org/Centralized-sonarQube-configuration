@@ -1,0 +1,23 @@
+on:
+  workflow_call:
+    inputs:
+      project-key:
+        required: true
+        type: string
+    secrets:
+      SONARCLOUD_TOKEN:
+        required: true
+
+jobs:
+  sonar_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run SonarQube scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        with:
+          projectKey: ${{ inputs.project-key }}
+        env:
+          SONARCLOUD_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
